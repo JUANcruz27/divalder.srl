@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divalfer - Mantenimiento Eléctrico Profesional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --color-principal: #0056b3;
+            --color-secundario: #f9a825;
+            --color-oscuro: #1a1a1a;
+            --color-claro: #f8f9fa;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--color-oscuro);
+        }
+
+        /* Navegación */
+        header {
+            background-color: var(--color-principal);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-secundario);
+        }
+
+        /* Sección Hero */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 2rem;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--color-secundario);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background-color: var(--color-secundario);
+            color: var(--color-oscuro);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e69500;
+        }
+
+        /* Secciones Generales */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--color-principal);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 3px;
+            background-color: var(--color-secundario);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Trabajos Realizados */
+        .trabajos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .trabajo-card {
+            background-color: var(--color-claro);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .trabajo-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .trabajo-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .trabajo-content {
+            padding: 1.5rem;
+        }
+
+        .trabajo-content h3 {
+            color: var(--color-principal);
+            margin-bottom: 1rem;
+        }
+
+        /* Clientes */
+        .clientes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .cliente-card {
+            padding: 2rem;
+            background-color: var(--color-claro);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .cliente-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid var(--color-principal);
+        }
+
+        .cliente-comentario {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .cliente-nombre {
+            font-weight: bold;
+            color: var(--color-principal);
+        }
+
+        /* Contacto */
+        .contacto-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .contacto-img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .contacto-info h3 {
+            color: var(--color-principal);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .contacto-info p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .contacto-info a {
+            color: var(--color-principal);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contacto-info a:hover {
+            color: var(--color-secundario);
+        }
+
+        /* WhatsApp Flotante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 100;
+        }
+
+        .whatsapp-btn {
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-btn i {
+            font-size: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-principal);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .contacto-container {
+                grid-template-columns: 1fr;
+            }
+
+            .whatsapp-btn {
+                width: 50px;
+                height: 50px;
+            }
+
+            .whatsapp-btn i {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header y Navegación -->
+    <header>
+        <nav>
+            <a href="#" class="logo">DIVALFER</a>
+            <div class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#trabajos">Trabajos</a>
+                <a href="#clientes">Clientes</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sección Hero -->
+    <section class="hero" id="inicio">
+        <h1>Mantenimiento Eléctrico Profesional</h1>
+        <p>Soluciones integrales para instalaciones eléctricas residenciales, comerciales e industriales. Seguridad, calidad y eficiencia en cada proyecto.</p>
+        <a href="#contacto" class="btn">Solicita tu Presupuesto</a>
+    </section>
+
+    <!-- Sección Trabajos Que Realizamos -->
+    <section class="section" id="trabajos">
+        <h2 class="section-title">Trabajos Realizados</h2>
+        <div class="trabajos-grid">
+            <div class="trabajo-card">
+                <img src="10.jpg" alt="Instalación Eléctrica Residencial" class="trabajo-img">
+                <div class="trabajo-content">
+                    <h3>Instalación Eléctrica Residencial</h3>
+                    <p>Montaje completo de cuadros de distribución, toma de corrientes, iluminación y sistemas de protección diferencial en viviendas unifamiliares. Incluye diseño personalizado según necesidades del hogar, cumplimiento de normativas IRAM y pruebas de funcionamiento para garantizar seguridad máxima.</p>
+                </div>
+            </div>
+            <div class="trabajo-card">
+                <img src="mant ind.jpg" alt="Mantenimiento Industrial" class="trabajo-img">
+                <div class="trabajo-content">
+                    <h3>Mantenimiento Preventivo y Correctivo Industrial</h3>
+                    <p>Inspección periódica de equipos eléctricos, limpieza de instalaciones, reemplazo de componentes desgastados y reparación de fallas en plantas industriales. Se realizan mediciones de tensión, corriente y resistencia, además de informes detallados con recomendaciones para optimizar el rendimiento de los sistemas.</p>
+                </div>
+            </div>
+            <div class="trabajo-card">
+                <img src="luminaria led 2.jpg" alt="Iluminación Pública" class="trabajo-img">
+                <div class="trabajo-content">
+                    <h3>Renovación de Iluminación Pública</h3>
+                    <p>Cambio de luminarias tradicionales por tecnología LED en calles y plazas, reduciendo consumo energético en un 60%. Incluye ajuste de postes, instalación de controladores temporizados y verificación de conexiones para asegurar durabilidad y eficiencia energética.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Clientes -->
+    <section class="section" id="clientes">
+        <h2 class="section-title">Nuestros Clientes</h2>
+        <div class="clientes-grid">
+            <div class="cliente-card">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Cliente Empresa Comercial" class="cliente-img">
+                <p class="cliente-comentario">"Contamos con Divalfer para el mantenimiento de nuestras instalaciones desde hace 3 años. Su rapidez en la atención de emergencias y la calidad de sus trabajos son excepcionales."</p>
+                <p class="cliente-nombre">— Empresa Comercial S.A.</p>
+            </div>
+            <div class="cliente-card">
+                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Cliente Residencial" class="cliente-img">
+                <p class="cliente-comentario">"Realizaron la instalación completa de mi casa nueva. El equipo fue muy profesional, explicó cada paso y cumplió con los plazos acordados. Muy recomendados."</p>
+                <p class="cliente-nombre">— María López, Residencial</p>
+            </div>
+            <div class="cliente-card">
+                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Cliente Industrial" class="cliente-img">
+                <p class="cliente-comentario">"La renovación de nuestro sistema eléctrico redujo nuestros costos de energía y mejoró la seguridad de nuestros trabajadores. El servicio técnico es siempre puntual y eficiente."</p>
+                <p class="cliente-nombre">— Gerente de Planta Industrial</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section class="section" id="contacto">
+        <h2 class="section-title">Contactanos</h2>
+        <div class="contacto-container">
+            <img src="2.jpg" alt="Contacto Eléctrico" class="contacto-img">
+            <div class="contacto-info">
+                <h3>Estamos listos para ayudarte con tu proyecto eléctrico</h3>
+                <p><i class="fas fa-envelope"></i> Correo Electrónico: <a href="mailto:Divalfer@gmail.com">Divalfer@gmail.com</a></p>
+                <p><i class="fas fa-clock"></i> Horario de Atención Administrativa: Lunes a Viernes de 8:00 a 18:00 hs</p>
+                <p><i class="fas fa-phone"></i> Consultas Urgentes: WhatsApp 1154584077 o llamada directa 1150038092 </p>
+            </div>
+        </div>
+    </section>
